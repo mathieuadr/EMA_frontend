@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "EMA_frontend": {
+    "EMA_frontend2": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ema-frontend",
+            "outputPath": "dist/ema-frontend2",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -37,9 +37,13 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.css"
-            ],
-            "scripts": []
+              ],
+              "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              ]
           },
           "configurations": {
             "production": {
@@ -69,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "EMA_frontend:build:production"
+              "buildTarget": "EMA_frontend2:build:production"
             },
             "development": {
-              "buildTarget": "EMA_frontend:build:development"
+              "buildTarget": "EMA_frontend2:build:development"
             }
           },
           "defaultConfiguration": "development"
