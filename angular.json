@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "EMA_frontend2": {
+    "EMA_frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ema-frontend2",
+            "outputPath": "dist/ema-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "EMA_frontend2:build:production"
+              "buildTarget": "EMA_frontend:build:production"
             },
             "development": {
-              "buildTarget": "EMA_frontend2:build:development"
+              "buildTarget": "EMA_frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
