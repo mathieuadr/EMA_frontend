@@ -4,13 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private userId: string | null = null;
+  private userId: String | null = null;
 
-  setUserId(id: string): void {
+  setUserId(id: String): void {
     this.userId = id;
   }
 
-  getUserId(): string | null {
+  getUserId(): String | null {
     return this.userId;
   }
 

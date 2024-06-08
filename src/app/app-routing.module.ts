@@ -5,9 +5,9 @@ import { HistoricalComponent } from './historical/historical.component';
 import { EventListComponent } from './event-list/event-list.component';
 
 const routes: Routes = [
-  {path:'\home',component: LoginPageComponent},
+  {path:'',component: LoginPageComponent},
   {path:'\histo',component: HistoricalComponent},
-  {path:'',component: EventListComponent},
+  {path:'\home',component: EventListComponent},
 ];
 
 @NgModule({
