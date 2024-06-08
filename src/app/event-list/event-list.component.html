@@ -1,0 +1,14 @@
+<div class="container mt-5">
+    <div *ngIf="events && events.length">
+        <h2 class="mb-4 text-light text-center">Blog Posts</h2>
+        <div class="row">
+            <div   *ngFor="let event of events">
+                <app-event-item [Event]="event" ></app-event-item>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!events || events.length === 0" class="alert alert-info mt-4">
+        <p class="mb-0">No Event available.</p>
+    </div>
+</div>

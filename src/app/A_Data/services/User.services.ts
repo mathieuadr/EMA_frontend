@@ -9,7 +9,8 @@ import { User } from "../User";
     providedIn: 'root'
   })
 export class UserService{
-  private PostUrl = `${environment.apiUrl}v1/Users/Login/`;
+  
+  private PostUrl = `${environment.apiUrl}v1/Users/Login`;
   
   constructor(private http: HttpClient) { }
 
@@ -21,8 +22,14 @@ export class UserService{
   
     return this.http.post<HttpResponse<User>>(this.PostUrl, loginData, { headers, observe: 'response' })
       .pipe(
-        map(response => response.body as User) // Extraction du corps de la réponse
+        map(response => {
+          if (response.status === 200) {
+            return response.body as unknown as User; // Extraction du corps de la réponse si le statut est 200
+          } else {
+            throw new Error('Authentication failed');
+          }
+        })
       );
-    }
   
+}
 }

@@ -1,44 +1,69 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../A_Data/services/User.services';
+import Swal from 'sweetalert2';
+import { User } from '../A_Data/User';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+  styleUrls: ['./login-page.component.css']  // correction ici
 })
 export class LoginPageComponent {
-  form = this.fb.group({
-    username: [
-      '',
-      {
-        validators: [Validators.required
-        ],
-        updateOn: 'blur',
-      },
-    ],
-    password: [
-      '',
-      {validators:[
-        Validators.required,
- 
-      ]},
-    ]});  
+  form: FormGroup;
 
-
-    constructor(private userService: UserService, private fb: FormBuilder, private router: Router){
-    }
-  onSubmit(){
-    
-    this.userService.login(this.form.value.username!, this.form.value.password!).subscribe(response => {
-      if (response.status === 200) {
-        this.router.navigate(['/home']);
-      }
-    }, error => {
-      alert('Login failed');
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+    this.form = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
-  }
 
+  Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+
+  onSubmit() {
+    if (this.form.invalid) {
+      this.Toast.fire({
+        icon: 'error',
+        title: 'Formulaire invalide!',
+      });
+      return;
+    }
+
+    const { username, password } = this.form.value;
+
+    this.userService.login(username, password).subscribe(
+      (response: User) => {
+        
+        this.Toast.fire({
+          icon: 'success',
+          title: 'Connexion réussie!',
+        });
+        this.form.reset();
+        this.router.navigate(['/dashboard']);  // Adjust the route as needed
+      },
+      (error: any) => {
+        this.Toast.fire({
+          icon: 'error',
+          title: 'Erreur de connexion!',
+          text: error.message || 'Erreur inconnue',
+        });
+      }
+    );
+  }
+}

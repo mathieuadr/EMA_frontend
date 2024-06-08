@@ -1,0 +1,12 @@
+<div class="container mt-5" *ngIf="Event">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title">{{Event.title}}</h3>
+            <p class="card-text">{{Event.description}}</p>
+            <div class="mt-3">
+                <span class="badge bg-primary me-3">{{Event.idCreator.name}}</span>
+                <span class="badge bg-secondary">{{Event.idCreator.surname}}</span>
+            </div>
+        </div>
+    </div>
+</div>
