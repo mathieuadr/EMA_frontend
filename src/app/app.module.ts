@@ -14,6 +14,10 @@ import { EventItemComponent } from './event-item/event-item.component';
 import { EventService } from './A_Data/services/Event.services';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { RegistrationService } from './A_Data/services/Registration.services';
+import { FeedBackComponent } from './feed-back/feed-back.component';
+import { FeedBackItemComponent } from './feed-back/feed-back-item/feed-back-item.component';
+import { FeedbackService } from './A_Data/services/FeedBack.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { SignInComponent } from './sign-in/sign-in.component';
     HistoricalComponent,
     EventListComponent,
     EventItemComponent,
-    SignInComponent
+    SignInComponent,
+    FeedBackComponent,
+    FeedBackItemComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,11 @@ import { SignInComponent } from './sign-in/sign-in.component';
     ReactiveFormsModule
 
   ],
-  providers: [UserService,EventService],
+  providers: [UserService,
+    EventService,
+    RegistrationService,
+    FeedbackService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

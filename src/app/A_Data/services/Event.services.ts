@@ -7,6 +7,7 @@ import { Event } from "../Event";
     providedIn: 'root'
   })
 export class EventService{
+
   
   private PostUrl = `${environment.apiUrl}v1/Event`;
 
@@ -15,4 +16,6 @@ export class EventService{
   getAll(): Observable<Event[]> {
     return this.http.get<Event[]>(this.PostUrl);
     }
+
+  
 }

@@ -1,0 +1,14 @@
+<div class="container mt-5">
+    <div *ngIf="feedb && feedb.length">
+        <h2 class="mb-4 text-dark text-center">Events </h2>
+        <div class="row">
+            <div   *ngFor="let feedback of feedb">
+                <app-feed-back-item [feedback]="feedback" ></app-feed-back-item>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="!feedb || feedb.length === 0" class="alert alert-info mt-4">
+        <p class="mb-0">No FeedBack available.</p>
+    </div>
+</div>

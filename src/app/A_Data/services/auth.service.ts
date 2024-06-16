@@ -4,17 +4,26 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private userId: String | null = null;
 
-  setUserId(id: String): void {
-    this.userId = id;
+  /*cette classe permet de garder en cache de maniére locale l'id de l'utilisateur.
+  L'id n'etant pas une information sensible cela ne pose pas de probléme.
+  La fluidité des intéractions et directement impactée par cet élément
+  */
+
+
+
+  private userIdKey = 'userId'; // Clé pour stocker l'ID utilisateur dans localStorage
+
+  setUserId(id: string): void {
+    localStorage.setItem(this.userIdKey, id); // Stocker l'ID utilisateur dans localStorage
   }
 
-  getUserId(): String | null {
-    return this.userId;
+  getUserId(): string | null {
+    return localStorage.getItem(this.userIdKey); // Récupérer l'ID utilisateur depuis localStorage
   }
 
   clearUserId(): void {
-    this.userId = null;
+    localStorage.removeItem(this.userIdKey); // Supprimer l'ID utilisateur de localStorage
   }
+
 }
