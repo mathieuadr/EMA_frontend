@@ -13,6 +13,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventItemComponent } from './event-item/event-item.component';
 import { EventService } from './A_Data/services/Event.services';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginPageComponent,
     HistoricalComponent,
     EventListComponent,
-    EventItemComponent
+    EventItemComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

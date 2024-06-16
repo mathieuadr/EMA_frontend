@@ -53,7 +53,7 @@ export class LoginPageComponent {
         this.authService.setUserId(response.id_user);
         this.Toast.fire({
           icon: 'success',
-          title: 'Connexion réussie!',
+          title: 'Connected',
         });
         this.form.reset();
         this.router.navigate(['/home']);  // Adjust the route as needed
@@ -61,10 +61,17 @@ export class LoginPageComponent {
       (error: any) => {
         this.Toast.fire({
           icon: 'error',
-          title: 'Erreur de connexion!',
-          text: error.message || 'Erreur inconnue',
+          title: 'Incorrect information',
         });
       }
     );
   }
+
+  get password(){
+    return this.form.controls['password'];
+  }
+  get Email(){
+    return this.form.controls['Email'];
+  }
 }
+ 

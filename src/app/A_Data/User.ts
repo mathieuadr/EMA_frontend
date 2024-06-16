@@ -7,3 +7,7 @@ export interface User {
     mail : String;
 
 }
+
+export type UserCreateInput = Omit<User, "id_user"> & {
+    password: string;
+  };
