@@ -1,12 +1,16 @@
-<div class="container mt-5">
-    <div *ngIf="events && events.length">
-        <h2 class="mb-4 text-dark text-center">Events </h2>
+
+<div class="container bootstrap snippets bootdey pr-2">
+    <hr>
+  <ol class="breadcrumb">
+    <li class="pull-right"><a href="" class="text-muted">
+      <i class="fa fa-refresh"></i></a>
+    </li>
+  </ol>
         <div class="row">
             <div   *ngFor="let event of events">
                 <app-event-item [Event]="event" ></app-event-item>
             </div>
         </div>
-    </div>
 
     <div *ngIf="!events || events.length === 0" class="alert alert-info mt-4">
         <p class="mb-0">No Event available.</p>

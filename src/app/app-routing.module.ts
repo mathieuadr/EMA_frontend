@@ -5,6 +5,7 @@ import { HistoricalComponent } from './historical/historical.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { FeedBackComponent } from './feed-back/feed-back.component';
+import { AddEventComponent } from './Add_component/add-event/add-event.component';
 
 const routes: Routes = [
   {path:'',component: LoginPageComponent},
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path:'home',component: EventListComponent},
   {path:'signin',component: SignInComponent},
   {path:'feedback',component: FeedBackComponent},
+  {path:'addevent',component: AddEventComponent},
+
 
 ];
 

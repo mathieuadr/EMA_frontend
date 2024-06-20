@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  @ViewChild('sidenav')
+  sidenav!: MatSidenav;
   title = 'EMA_frontend';
 
+  onToggleSidenav(): void {
+    this.sidenav.toggle();
+  }
 }

@@ -1,23 +1,27 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+// top-bar.component.ts
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../A_Data/services/auth.service';
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrl: './top-bar.component.css'
+  styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent {
+  @Output() toggleSidenav = new EventEmitter<void>();
 
+  constructor(private router: Router, private authService: AuthService) {}
 
-  constructor(private router: Router,
-    private authService: AuthService
-  ) {}
   confirmLogout(event: Event): void {
-    event.preventDefault(); // Empêche le lien de naviguer immédiatement
+    event.preventDefault();
     if (confirm('Are you sure you want to log out?')) {
       this.authService.clearUserId();
-      this.router.navigate(['/']); // Navigue vers la page d'accueil
+      this.router.navigate(['/']);
     }
+  }
+
+  onToggleSidenav(): void {
+    this.toggleSidenav.emit();
   }
 }

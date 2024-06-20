@@ -1,17 +1,15 @@
+<!-- top-bar.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="container-fluid d-flex justify-content-between align-items-center py-3 ">
+      <button class="btn btn-outline-light me-2 bi-menu-button" (click)="onToggleSidenav()">
+        Menu
+      </button>
+      <a class="navbar-brand d-flex align-items-center" href="/home" style="font-size: 24px; color: white;">
+        <img src="/assets/image/Logo_EMA.jpg" style="width: 100px;" alt="logo">
+        
+      </a>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-        <div class="container-fluid d-flex justify-content-between align-items-center py-3">
-            <a class="navbar-brand d-flex align-items-center" href="#" style="font-size: 24px; color: white;">
-                <img src="/assets/image/Logo_EMA.jpg" style="width: 100px;" alt="logo">
-                
-            </a>
-            <div>
-                <a class="btn btn-outline-light me-2 bi-box-arrow-right"  (click)="confirmLogout($event)" >Log-out</a>
-                
-                <a class="btn btn-outline-light ms-2"  routerLink='/feedback'>FeedBack</a>
-            </div>
-        </div>
-    </nav>
-</body>
-
+      <a class="btn btn-outline-light me-2 bi-box-arrow-right" (click)="confirmLogout($event)">Log-out</a>
+    </div>
+  </nav>
+  

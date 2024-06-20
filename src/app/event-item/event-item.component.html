@@ -1,15 +1,36 @@
-<div class="container mt-5" *ngIf="Event">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title">{{Event.title+'  -  '+(Event.dateBegining | date: 'dd/MM/yyyy')+'  -  '+(Event.dateBegining | date: 'hh:mm a')}}</h3>
-            <p class="card-text">{{Event.description}}</p>
-            <div class="mt-3 d-flex justify-content-between align-items-center">
-                <div>
-                  <span class="badge bg-primary me-3">{{Event.idCreator.name + ' ' + Event.idCreator.surname}}</span>
-                  <span class="badge bg-secondary"><i class="bi bi-geo-alt-fill me-1"></i>{{Event.location}}</span>
+
+    <div class="container mt-5 mb-5" >
+        <a >
+
+            <div class="row ">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <div class="image">
+                        <img src="/assets/image/event_default.png" alt="Defaultimage" class="img-fluid custom-image-size" style= "width: 800px; height: 300px;">
+
+                    </div>
+                    
                 </div>
-                <button class="btn btn-success" (click)="register()">Register</button>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 rm-4">
+                    <div class="blog-details">
+                        <h2 class="card-title">{{Event.title}}
+                        </h2>
+                        <div class="date">
+                            <span class="blog-date">{{(Event.dateBegining | date: 'dd/MM/YYYY - hh:mm a')+' to '+ (Event.date_end | date: ' hh:mm a')}}</span>
+                        </div>
+                        <p class="card-text">
+                            {{Event.description}}
+                        </p>
+                    </div>
+                    <div class="mt-5 d-flex justify-content-between align-items-center ">
+                        <div >
+                            <span class="badge bg-primary me-3">{{Event.idCreator.name + ' ' +
+                                Event.idCreator.surname}}</span>
+                            <span class="badge bg-secondary"><i
+                                    class="bi bi-geo-alt-fill me-1"></i>{{Event.location}}</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-success mt-5" (click)="register()">Register</button>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
-</div>

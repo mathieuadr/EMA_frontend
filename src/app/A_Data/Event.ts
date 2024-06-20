@@ -10,3 +10,5 @@ export interface Event{
     location: String;
     idCreator: User;
 }
+
+export type EventCreateInput = Omit<Event, "idEvent" | "eventStatus">;

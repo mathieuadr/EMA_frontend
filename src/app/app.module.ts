@@ -18,6 +18,11 @@ import { RegistrationService } from './A_Data/services/Registration.services';
 import { FeedBackComponent } from './feed-back/feed-back.component';
 import { FeedBackItemComponent } from './feed-back/feed-back-item/feed-back-item.component';
 import { FeedbackService } from './A_Data/services/FeedBack.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { AddEventComponent } from './Add_component/add-event/add-event.component';
 
 @NgModule({
   declarations: [
@@ -29,20 +34,24 @@ import { FeedbackService } from './A_Data/services/FeedBack.service';
     EventItemComponent,
     SignInComponent,
     FeedBackComponent,
-    FeedBackItemComponent
+    FeedBackItemComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,     
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,    
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatListModule,
 
   ],
   providers: [UserService,
     EventService,
     RegistrationService,
-    FeedbackService
+    FeedbackService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,86 @@
+<div class="mb-5">
+  <div>
+    <h1>New Event</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" class="form-control" id="title" formControlName="title" required 
+                   [class.is-invalid]="title.invalid && title.touched"
+                   [class.is-valid]="title.valid && title.touched" />
+            <div *ngIf="title.invalid && title.touched" class="invalid-feedback -danger">
+              <div *ngIf="title.errors?.['required']">Required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="description" class="form-label">Description:</label>
+            <textarea class="form-control" id="description" formControlName="description" rows="3" required 
+                      [class.is-invalid]="description.invalid && description.touched"
+                      [class.is-valid]="description.valid && description.touched"></textarea>
+            <div *ngIf="description.invalid && description.touched" class="invalid-feedback -danger">
+              <div *ngIf="description.errors?.['required']">Required</div>
+              <div *ngIf="description.errors?.['maxlength']">Content should be 200 characters or less</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="dateBeginning" class="form-label">Date Beginning:</label>
+            <input type="datetime-local" class="form-control" id="dateBeginning" formControlName="dateBeginning" required 
+                   [class.is-invalid]="dateBeginning.invalid && dateBeginning.touched"
+                   [class.is-valid]="dateBeginning.valid && dateBeginning.touched" />
+            <div *ngIf="dateBeginning.invalid && dateBeginning.touched" class="invalid-feedback">
+              <div *ngIf="dateBeginning.errors?.['required']">Required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="date_end" class="form-label">Date End:</label>
+            <input type="datetime-local" class="form-control" id="date_end" formControlName="date_end" required 
+                   [class.is-invalid]="date_end.invalid && date_end.touched"
+                   [class.is-valid]="date_end.valid && date_end.touched" />
+            <div *ngIf="date_end.invalid && date_end.touched" class="invalid-feedback -danger">
+              <div *ngIf="date_end.errors?.['required']">Required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="location" class="form-label">Location:</label>
+            <input type="text" class="form-control" id="location" formControlName="location" required 
+                   [class.is-invalid]="location.invalid && location.touched"
+                   [class.is-valid]="location.valid && location.touched" />
+            <div *ngIf="location.invalid && location.touched" class="invalid-feedback -danger">
+              <div *ngIf="location.errors?.['required']">Required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-primary w-100">Create Event</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
