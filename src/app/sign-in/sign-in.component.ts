@@ -43,7 +43,7 @@ export class SignInComponent {
         };
         this.userService.sign_in(user).subscribe(
           (response: User) => {
-            this.authService.setUserId(response.id_user);
+            this.authService.setUserId(response.id);
             this.toastService.showSuccess('Publication réussie!');
             this.form.reset();
             this.router.navigate(['/home']);

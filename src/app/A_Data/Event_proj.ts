@@ -1,6 +1,6 @@
 import { User } from "./User";
 
-export interface Event{
+export interface Event_Proj{
     idEvent :String;
     title : String;
     description : String;
@@ -11,4 +11,4 @@ export interface Event{
     idCreator: User;
 }
 
-export type EventCreateInput = Omit<Event, "idEvent" | "eventStatus">;
+export type EventCreateInput = Omit<Event_Proj, "idEvent" | "eventStatus">;

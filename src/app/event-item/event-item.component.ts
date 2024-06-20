@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Event } from '../A_Data/Event';
+import { Event_Proj } from '../A_Data/Event_proj';
 import { User } from '../A_Data/User';
 import { AuthService } from '../A_Data/services/auth.service';
 import { EventService } from '../A_Data/services/Event.services';
@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class EventItemComponent {
   @Input()
-  Event!:Event;
+  Event!:Event_Proj;
 
 
 

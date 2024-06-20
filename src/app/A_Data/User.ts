@@ -1,13 +1,13 @@
 
 
 export interface User {
-    id_user : string;
+    id : string;
     name : String;
     surname : String;
     mail : String;
 
 }
 
-export type UserCreateInput = Omit<User, "id_user"> & {
+export type UserCreateInput = Omit<User, "id"> & {
     password: string;
   };

@@ -40,6 +40,7 @@ export class UserService{
       .pipe(
         map(response => {
           if (response.status === 200) {
+            
             return response.body as unknown as User; // Extraction du corps de la réponse si le statut est 200
           } else {
             throw new Error('Authentication failed');

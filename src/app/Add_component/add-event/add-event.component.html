@@ -8,6 +8,14 @@
       <div class="row mb-3">
         <div class="col-md-12">
           <div class="form-group">
+            <label for="userid" class="form-label">User ID:</label>
+            <input type="text" class="form-control" id="userid" formControlName="idCreator" readonly />
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="form-group">
             <label for="title" class="form-label">Title:</label>
             <input type="text" class="form-control" id="title" formControlName="title" required 
                    [class.is-invalid]="title.invalid && title.touched"

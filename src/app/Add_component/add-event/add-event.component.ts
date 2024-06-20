@@ -4,7 +4,7 @@ import { ToastService } from '../../A_Data/services/A_Outil/Toast';
 import { EventService } from '../../A_Data/services/Event.services';
 import {  Router } from '@angular/router';
 import { AuthService } from '../../A_Data/services/auth.service';
-import { Event } from '../../A_Data/Event';
+import { Event_Proj } from '../../A_Data/Event_proj';
 
 @Component({
   selector: 'app-add-event',
@@ -20,7 +20,7 @@ export class AddEventComponent {
     dateBeginning: ['', Validators.required],
     date_end: ['', Validators.required],
     location: ['', Validators.required],
-    idCreator:[authservice.getUserId]
+    idCreator:[authservice.getUserId()]
   });}
 
 
@@ -29,7 +29,7 @@ export class AddEventComponent {
     if (this.form.valid) {
       const eventData = this.form.value;
       this.eventService.Create(eventData).subscribe(
-        (response: Event) => {
+        (response: Event_Proj) => {
           this.toastService.showSuccess('Nouvel évenement créé');
           this.form.reset();
           this.router.navigate(['/home']);
