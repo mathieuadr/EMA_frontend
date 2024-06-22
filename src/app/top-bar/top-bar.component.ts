@@ -2,6 +2,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../A_Data/services/auth.service';
+import { UserService } from '../A_Data/services/User.services';
+import { User } from '../A_Data/User';
 
 @Component({
   selector: 'app-top-bar',
@@ -9,9 +11,15 @@ import { AuthService } from '../A_Data/services/auth.service';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent {
-  @Output() toggleSidenav = new EventEmitter<void>();
+  current_user!: User;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private userservice : UserService) {
+    
+  }
+
+  ngOnInit(){
+    this.loadUser;
+  }
 
   confirmLogout(event: Event): void {
     event.preventDefault();
@@ -19,9 +27,25 @@ export class TopBarComponent {
       this.authService.clearUserId();
       this.router.navigate(['/']);
     }
+
   }
 
-  onToggleSidenav(): void {
-    this.toggleSidenav.emit();
-  }
+
+
+  loadUser(): void {
+    const userId = this.authService.getUserId();
+    if (userId === 'Unknown') {
+      this.router.navigate(['/']);
+    } else {
+      this.userservice.getById(userId).subscribe({
+        next: (user) => {
+          this.current_user = user;
+        },
+        error: (err) => {
+          console.error('Error loading user', err);
+          this.router.navigate(['/']); // Navigate to home or an error page
+        }
+      });
+    }
+    }
 }

@@ -7,3 +7,4 @@ export interface Feedback{
     rating :Int16Array;
 
 }
+export type FeedbackCreateInput = Omit<Feedback, "id_feedback"> 

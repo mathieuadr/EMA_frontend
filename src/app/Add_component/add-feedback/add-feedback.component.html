@@ -1,0 +1,20 @@
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="feedbackModalLabel">Give Feedback</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="feedback" class="form-label">Feedback</label>
+              <input type="text" id="feedback" name="feedback" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

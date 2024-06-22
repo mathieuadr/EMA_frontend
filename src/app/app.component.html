@@ -1,19 +1,7 @@
 <!-- app.component.html -->
 <div class="d-flex flex-column vh-100">
-  <app-top-bar (toggleSidenav)="onToggleSidenav()"></app-top-bar>
-  <div class="flex-grow-1 d-flex">
-    <mat-sidenav-container class="h-100 w-100">
-      <mat-sidenav #sidenav mode="side" class=" w-auto bg-sidebar">
-        <mat-nav-list>
-          <a mat-list-item routerLink="/home"><i class="bi bi-house"></i> Home</a>
-          <a mat-list-item routerLink="/feedback"><i class="bi bi-chat"></i> Feedback</a>
-          <a mat-list-item routerLink="/addevent"><i class="bi bi-plus"></i> Add new event</a>
-        </mat-nav-list>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <!-- Contenu principal de votre application -->
+  <app-top-bar></app-top-bar>
+
+
         <router-outlet></router-outlet>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
 </div>

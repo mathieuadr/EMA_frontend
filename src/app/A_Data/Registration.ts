@@ -3,7 +3,8 @@ import { User } from "./User";
 
 export interface Registration {
     user : User ;
-    registrationId: string;
+    registrationID: String;
     event : Event_Proj;
     status: String
 }
+export type RegistrationCreateInput = Omit<Registration, "registrationid"> 

@@ -3,32 +3,22 @@ import { environment } from "../../A_Environment/environment";
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { User, UserCreateInput } from "../User";
+import BaseService from "./Base-service";
 
 
 @Injectable({
     providedIn: 'root'
   })
-export class UserService{
+export class UserService extends BaseService<User,UserCreateInput>{
   
   private PostUrl = `${environment.apiUrl}v1/Users`;
-  
-  constructor(private http: HttpClient) { }
 
-  sign_in(User : UserCreateInput):Observable<User>{
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    return this.http.post<HttpResponse<User>>(this.PostUrl+"/Create",User,{ headers, observe: 'response' }).pipe(
-      map(response => {
-        if (response.status === 200) {
-          return response.body as unknown as User; // Extraction du corps de la réponse si le statut est 200
-        } else {
-          throw new Error('Sign-in failed');
-        }
-      }));
+  override getEndpointUrl(): string {
+    return this.PostUrl;
   }
 
 
+  
 
   login(username: string, password: string): Observable<User> {
     const loginData = { username, password };

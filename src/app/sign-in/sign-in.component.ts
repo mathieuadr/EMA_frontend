@@ -41,7 +41,7 @@ export class SignInComponent {
           password: this.form.value.password!,
           mail: this.form.value.email!
         };
-        this.userService.sign_in(user).subscribe(
+        this.userService.create(user).subscribe(
           (response: User) => {
             this.authService.setUserId(response.id);
             this.toastService.showSuccess('Publication réussie!');

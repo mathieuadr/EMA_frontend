@@ -18,11 +18,14 @@ import { RegistrationService } from './A_Data/services/Registration.services';
 import { FeedBackComponent } from './feed-back/feed-back.component';
 import { FeedBackItemComponent } from './feed-back/feed-back-item/feed-back-item.component';
 import { FeedbackService } from './A_Data/services/FeedBack.service';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTab, MatTabGroup} from '@angular/material/tabs';
 import { AddEventComponent } from './Add_component/add-event/add-event.component';
+import { UserPageComponent } from './user-page/user-page.component';
+import { AddFeedbackComponent } from './Add_component/add-feedback/add-feedback.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { AddEventComponent } from './Add_component/add-event/add-event.component
     SignInComponent,
     FeedBackComponent,
     FeedBackItemComponent,
-    AddEventComponent
+    AddEventComponent,
+    UserPageComponent,
+    AddFeedbackComponent
   ],
   imports: [
     BrowserModule,
@@ -46,12 +51,14 @@ import { AddEventComponent } from './Add_component/add-event/add-event.component
     BrowserAnimationsModule,
     MatSidenavModule,
     MatListModule,
+    MatTab,MatTabGroup,
 
   ],
   providers: [UserService,
     EventService,
     RegistrationService,
     FeedbackService,
+    
   ],
   bootstrap: [AppComponent]
 })

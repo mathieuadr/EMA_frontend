@@ -10,7 +10,7 @@ export class AuthService {
   La fluidité des intéractions et directement impactée par cet élément
   */
 
-
+  
 
   private userIdKey = 'userId'; // Clé pour stocker l'ID utilisateur dans localStorage
 
@@ -18,8 +18,13 @@ export class AuthService {
     localStorage.setItem(this.userIdKey, id); // Stocker l'ID utilisateur dans localStorage
   }
 
-  getUserId(): string | null {
-    return localStorage.getItem(this.userIdKey); // Récupérer l'ID utilisateur depuis localStorage
+  getUserId(): string  {
+    let userid=localStorage.getItem(this.userIdKey);
+    if (userid==null){
+      userid='Unknown';
+    }
+    
+    return userid; // Récupérer l'ID utilisateur depuis localStorage
   }
 
   clearUserId(): void {

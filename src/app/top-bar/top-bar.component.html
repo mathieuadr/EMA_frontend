@@ -1,15 +1,61 @@
 <!-- top-bar.component.html -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-    <div class="container-fluid d-flex justify-content-between align-items-center py-3 ">
-      <button class="btn btn-outline-light me-2 bi-menu-button" (click)="onToggleSidenav()">
-        Menu
-      </button>
-      <a class="navbar-brand d-flex align-items-center" href="/home" style="font-size: 24px; color: white;">
-        <img src="/assets/image/Logo_EMA.jpg" style="width: 100px;" alt="logo">
-        
-      </a>
 
-      <a class="btn btn-outline-light me-2 bi-box-arrow-right" (click)="confirmLogout($event)">Log-out</a>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid justify-content-between mt-2">
+    <!-- Left elements -->
+    <div class="d-flex">
+      <!-- Brand -->
+      <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
+        <img
+          src="/assets/image/Logo_EMA.jpg"
+          height="60"
+          alt="MDB Logo"
+          loading="lazy"
+          style="margin-top: 2px; "
+        />
+      </a>
     </div>
-  </nav>
-  
+    <!-- Left elements -->
+
+    <!-- Center elements -->
+    <ul class="navbar-nav flex-row d-none d-md-flex">
+      <li class="nav-item me-3 me-lg-1">
+        <a class="btn btn-outline-light me-2" routerLink="/home"><i class="bi bi-house"></i> Home</a>
+      </li>
+      <li class="nav-item me-3 me-lg-1">
+        <a class="btn btn-outline-light me-2" routerLink="/events"><i class="bi bi-calendar-event"></i> Events</a>
+      </li>
+      <li class="nav-item me-3 me-lg-1">
+        <a class="btn btn-outline-light me-2" routerLink="/feedback"><i class="bi bi-chat"></i> Feedback</a>
+      </li>
+      <li class="nav-item me-3 me-lg-1">
+        <a class="btn btn-outline-light me-2" routerLink="/addevent" > <i class="bi bi-chat"></i>Add new event</a>
+      </li>
+    </ul>
+    <!-- Center elements -->
+
+    <!-- Right elements -->
+    <ul class="navbar-nav flex-row">
+      <li class="nav-item me-3 me-lg-1">
+        <a class="nav-link d-sm-flex align-items-sm-center" href="/home">
+          <img
+            src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+            class="rounded-circle"
+            height="60"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"
+          />
+          <strong class="d-none d-sm-block ms-1 text-white">John</strong>
+        </a>
+      </li>
+        <li class="nav-item me-3 me-lg-1">
+          <a class="btn btn-outline-light me-2 bi-box-arrow-right" (click)="confirmLogout($event)">Log-out</a>
+        </li>
+    </ul>
+    <!-- Right elements -->
+  </div>
+
+</nav>
+<!-- Navbar -->

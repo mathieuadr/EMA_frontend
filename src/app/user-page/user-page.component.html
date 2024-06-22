@@ -1,0 +1,95 @@
+
+<body>
+  <div *ngIf="user_actual" class="container profile-container">
+    <div class="row align-items-center mb-4">
+      <div class="col-auto">
+        <img src="/assets/image/Profil_Picture.webp" alt="Defaultimage" class="rounded-circle profile-img">
+      </div>
+      <div class="col">
+        <h3>{{ user_actual.name + ' ' + user_actual.surname }}</h3>
+        <p>Email: {{ user_actual.mail }}</p>
+        <p>Role: {{ user_actual.id }}</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <mat-tab-group>
+        <mat-tab label="Future Events">
+          <div class="container">
+            <h2>Future Events</h2>
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Title</th>
+                  <th>Date beginning</th>
+                  <th>Creator</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let reg of registration">
+                  <td>{{ reg.event.title }}</td>
+                  <td>{{ reg.event.dateBegining | date: 'short' }}</td>
+                  <td>{{ reg.event.idCreator.name + ' ' + reg.event.idCreator.surname }}</td>
+                  <td><button *ngIf="isEventActive(reg.event.date_end)" type="button" class="btn btn btn-outline-danger" (click)="Unregister(reg.registrationID)">Unregister</button>
+                    <button *ngIf="!isEventActive(reg.event.date_end)"type="button" class="btn btn-outline-success">Give feedback</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Past Events">
+          <div class="container">
+            <h2>Past Events</h2>
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Title</th>
+                  <th>Date beginning</th>
+                  <th>Creator</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let reg of registration">
+                  <td>{{ reg.event.title }}</td>
+                  <td>{{ reg.event.dateBegining | date: 'short' }}</td>
+                  <td>{{ reg.event.idCreator.name + ' ' + reg.event.idCreator.surname }}</td>
+                  <td><button type="button" class="btn btn-outline-success">Give feedback</button></td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="My event">
+          <div class="container">
+            <h2>My event</h2>
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Title</th>
+                  <th>Date beginning</th>
+                  <th>Creator</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let event of User_events">
+                  <td>{{ event.dateBegining | date: 'short' }}</td>
+                  <td>{{ event.title }}</td>
+                  <td>{{ event.idCreator.name + ' ' + event.idCreator.surname }}</td>
+                  <td><button *ngIf="isEventActive(event.date_end)" type="button" class="btn btn btn-outline-danger">Delete your event</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+
+  <div *ngIf="!user_actual">
+    <p>Loading user details...</p>
+  </div>
+</body>
