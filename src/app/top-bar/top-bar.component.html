@@ -41,18 +41,25 @@
       <li class="nav-item me-3 me-lg-1">
         <a class="nav-link d-sm-flex align-items-sm-center" href="/home">
           <img
-            src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+            src="/assets/image/Profil_Picture.webp"
             class="rounded-circle"
             height="60"
             alt="Black and White Portrait of a Man"
             loading="lazy"
           />
-          <strong class="d-none d-sm-block ms-1 text-white">John</strong>
+          <strong *ngIf="current_user" class="d-none d-sm-block ms-1 text-white"></strong>
+          <button 
+          class="btn btn-white btn-sm ms-1" 
+          style="border: none; color: white; background-color: transparent; font-size: 1.5em;" 
+          (click)="confirmLogout($event)"
+          >
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
         </a>
+          
+
       </li>
-        <li class="nav-item me-3 me-lg-1">
-          <a class="btn btn-outline-light me-2 bi-box-arrow-right" (click)="confirmLogout($event)">Log-out</a>
-        </li>
+
     </ul>
     <!-- Right elements -->
   </div>

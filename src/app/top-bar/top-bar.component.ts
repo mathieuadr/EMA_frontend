@@ -25,6 +25,7 @@ export class TopBarComponent {
     event.preventDefault();
     if (confirm('Are you sure you want to log out?')) {
       this.authService.clearUserId();
+      this.loadUser();
       this.router.navigate(['/']);
     }
 
@@ -34,7 +35,7 @@ export class TopBarComponent {
 
   loadUser(): void {
     const userId = this.authService.getUserId();
-    if (userId === 'Unknown') {
+    if (userId == 'Unknown') {
       this.router.navigate(['/']);
     } else {
       this.userservice.getById(userId).subscribe({

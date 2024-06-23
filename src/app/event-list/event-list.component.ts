@@ -11,6 +11,9 @@ import {  Router } from '@angular/router';
 })
 export class EventListComponent {
   events :Event_Proj[]=[];
+  filterDate: string | undefined;
+  filterLocation: string | undefined;
+  filterIdCreator: string | undefined;
   
   constructor(private eventService : EventService, private router : Router){
   }
@@ -25,4 +28,22 @@ export class EventListComponent {
       this.events=events;
     });
   }
+
+  searchEvents(): void {
+    if (this.filterDate) {
+      this.filterDate = this.formatDate(new Date(this.filterDate));
+    }
+    this.eventService.getByFilter(this.filterDate, this.filterLocation, this.filterIdCreator).subscribe(events => {
+      this.events = events;
+    });
+  }
+
+   formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    
+    return `${year}-${month}-${day}`;
+  }
+  
 }

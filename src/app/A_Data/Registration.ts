@@ -3,7 +3,7 @@ import { User } from "./User";
 
 export interface Registration {
     user : User ;
-    registrationID: String;
+    registrationID: string;
     event : Event_Proj;
     status: String
 }

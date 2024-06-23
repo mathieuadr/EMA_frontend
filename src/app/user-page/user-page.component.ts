@@ -9,6 +9,8 @@ import { EventService } from '../A_Data/services/Event.services';
 import { Event_Proj } from '../A_Data/Event_proj';
 import { Registration } from '../A_Data/Registration';
 import { parse, isAfter } from 'date-fns';
+import { AddFeedbackComponent } from '../add-feedback/add-feedback.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-page',
@@ -23,7 +25,7 @@ export class UserPageComponent {
   User_events: Event_Proj[] = [];
 
   constructor(private userservice: UserService, private router: Router, private auth: AuthService, private registrationService: RegistrationService,
-    private EventService: EventService
+    private EventService: EventService, private dialog: MatDialog
   ) {
     this.date_now = new Date(Date.now());
   }
@@ -94,9 +96,20 @@ export class UserPageComponent {
   isEventActive(eventEndDate: Date): boolean {
     return new Date(eventEndDate) > this.date_now;
   }
-  
-  handleFeedbackSubmitted(feedback: string): void {
-    console.log(`Feedback submitted: ${feedback}`);
+
+  openFeedbackDialog(registrationID: string) {
+    const dialogRef = this.dialog.open(AddFeedbackComponent, {
+      width: '800px',
+      height:'450px',
+      data: { registrationID: registrationID }
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
   }
+
+
 
 }

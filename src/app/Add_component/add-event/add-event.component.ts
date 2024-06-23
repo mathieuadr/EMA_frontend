@@ -28,7 +28,7 @@ export class AddEventComponent {
   onSubmit() {
     if (this.form.valid) {
       const eventData = this.form.value;
-      this.eventService.Create(eventData).subscribe(
+      this.eventService.create(eventData).subscribe(
         (response: Event_Proj) => {
           this.toastService.showSuccess('Nouvel évenement créé');
           this.form.reset();

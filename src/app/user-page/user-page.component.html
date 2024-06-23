@@ -16,7 +16,7 @@
       <mat-tab-group>
         <mat-tab label="Future Events">
           <div class="container">
-            <h2>Future Events</h2>
+            <h2>Events</h2>
             <table class="table table-striped">
               <thead class="thead-dark">
                 <tr>
@@ -31,7 +31,7 @@
                   <td>{{ reg.event.dateBegining | date: 'short' }}</td>
                   <td>{{ reg.event.idCreator.name + ' ' + reg.event.idCreator.surname }}</td>
                   <td><button *ngIf="isEventActive(reg.event.date_end)" type="button" class="btn btn btn-outline-danger" (click)="Unregister(reg.registrationID)">Unregister</button>
-                    <button *ngIf="!isEventActive(reg.event.date_end)"type="button" class="btn btn-outline-success">Give feedback</button></td>
+                    <button *ngIf="!isEventActive(reg.event.date_end)"type="button" class="btn btn-outline-success" (click)="openFeedbackDialog(reg.registrationID)">Give feedback</button></td>
                 </tr>
               </tbody>
             </table>
@@ -40,7 +40,7 @@
 
         <mat-tab label="Past Events">
           <div class="container">
-            <h2>Past Events</h2>
+            <h2>My Feedbacks</h2>
             <table class="table table-striped">
               <thead class="thead-dark">
                 <tr>

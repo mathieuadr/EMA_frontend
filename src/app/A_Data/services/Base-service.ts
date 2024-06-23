@@ -1,6 +1,6 @@
-import { Observable, catchError, of } from "rxjs";
+import { Observable, catchError, map, of } from "rxjs";
 import { environment } from "../../A_Environment/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 /**
@@ -92,9 +92,19 @@ export default abstract class BaseService<ENTITY, ENTITY_CREATE_INPUT> {
    * @returns An Observable emitting the created entity object.
    */
   create(entity: ENTITY_CREATE_INPUT): Observable<ENTITY> {
-    return this.http.post<ENTITY>(this.getEndpointUrl()+'/create', entity)
-      .pipe(
-        catchError(this.handleError<ENTITY>('create', undefined))
-      );
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<ENTITY>(this.getEndpointUrl()+'/create', entity,{ headers, observe: 'response' })
+    .pipe(
+      map(response => {
+        if (response.status === 200) {
+          
+          return response.body as unknown as ENTITY; // Extraction du corps de la réponse si le statut est 200
+        } else {
+          throw new Error('Authentication failed');
+        }
+      })
+    )
   }
 }

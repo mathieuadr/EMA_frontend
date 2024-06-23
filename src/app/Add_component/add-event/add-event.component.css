@@ -1,0 +1,15 @@
+.rating {
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .rating .bi-star-fill {
+    font-size: 1.5rem;
+    color: gray;
+  }
+  
+  .rating .bi-star-fill.text-warning {
+    color: gold;
+  }
+  

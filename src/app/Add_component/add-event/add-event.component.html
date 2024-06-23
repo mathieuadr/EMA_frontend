@@ -1,18 +1,10 @@
 <div class="mb-5">
-  <div>
+  <div class="text-center">
     <h1>New Event</h1>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="container">
-      <div class="row mb-3">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for="userid" class="form-label">User ID:</label>
-            <input type="text" class="form-control" id="userid" formControlName="idCreator" readonly />
-          </div>
-        </div>
-      </div>
       <div class="row mb-3">
         <div class="col-md-12">
           <div class="form-group">
