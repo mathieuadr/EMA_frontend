@@ -24,7 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTab, MatTabGroup} from '@angular/material/tabs';
 import { AddEventComponent } from './Add_component/add-event/add-event.component';
 import { UserPageComponent } from './user-page/user-page.component';
-import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
+import { AddFeedbackComponent } from './Add_component/add-feedback/add-feedback.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({

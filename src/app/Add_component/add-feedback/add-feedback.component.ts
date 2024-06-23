@@ -2,11 +2,11 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastService } from '../A_Data/services/A_Outil/Toast';
-import { FeedbackService } from '../A_Data/services/FeedBack.service';
-import { AuthService } from '../A_Data/services/auth.service';
+import { ToastService } from '../../A_Data/services/A_Outil/Toast';
+import { FeedbackService } from '../../A_Data/services/FeedBack.service';
+import { AuthService } from '../../A_Data/services/auth.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Registration } from '../A_Data/Registration';
+import { Registration } from '../../A_Data/Registration';
 @Component({
   selector: 'app-add-feedback',
   templateUrl: './add-feedback.component.html',

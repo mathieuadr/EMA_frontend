@@ -9,7 +9,7 @@ import { EventService } from '../A_Data/services/Event.services';
 import { Event_Proj } from '../A_Data/Event_proj';
 import { Registration } from '../A_Data/Registration';
 import { parse, isAfter } from 'date-fns';
-import { AddFeedbackComponent } from '../add-feedback/add-feedback.component';
+import { AddFeedbackComponent } from '../Add_component/add-feedback/add-feedback.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
