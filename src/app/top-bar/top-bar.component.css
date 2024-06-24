@@ -1,0 +1,13 @@
+/* CSS personnalisé pour enlever les bords des boutons et les coins arrondis */
+.btn-outline-light {
+    border: none;
+    border-radius: 0;
+    flex: 1;
+    text-align: center;
+  }
+  .vertical-bar {
+    width: 2px;
+    height: 40px; /* Prendre toute la hauteur disponible */
+    background-color: rgba(255, 255, 255, 0.5); /* Couleur blanche légèrement transparente */
+    margin: 0 5px; /* Espacement des barres */
+  }

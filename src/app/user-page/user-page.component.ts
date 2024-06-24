@@ -11,6 +11,9 @@ import { Registration } from '../A_Data/Registration';
 import { parse, isAfter } from 'date-fns';
 import { AddFeedbackComponent } from '../Add_component/add-feedback/add-feedback.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Feedback } from '../A_Data/Feedback';
+import { FeedbackService } from '../A_Data/services/FeedBack.service';
+import { ToastService } from '../A_Data/services/A_Outil/Toast';
 
 @Component({
   selector: 'app-user-page',
@@ -23,9 +26,11 @@ export class UserPageComponent {
   date_now: Date;
   registration: Registration[] = [];
   User_events: Event_Proj[] = [];
+  user_feedback : Feedback[]=[];
 
-  constructor(private userservice: UserService, private router: Router, private auth: AuthService, private registrationService: RegistrationService,
-    private EventService: EventService, private dialog: MatDialog
+  constructor(private userservice: UserService, private router: Router, private auth: AuthService, 
+    private registrationService: RegistrationService,private toast: ToastService,
+    private EventService: EventService, private dialog: MatDialog, private feedbackservice : FeedbackService
   ) {
     this.date_now = new Date(Date.now());
   }
@@ -33,9 +38,13 @@ export class UserPageComponent {
     this.loadUser();
     this.loadEvents();
     this.loadMyEvents();
+    this.loadFeedback();
     this.date_now = new Date(Date.now());
   }
 
+
+  // loading methods
+  
   loadUser(): void {
     const userId = this.auth.getUserId();
     if (userId === 'Unknown') {
@@ -54,13 +63,24 @@ export class UserPageComponent {
   }
 
 
+  loadFeedback(): void{
+      this.feedbackservice.GetFeebackByIdUser(this.auth.getUserId()).subscribe({
+        next: (Feedbacks) => {
+          this.user_feedback = Feedbacks
+        },
+        error: (err) => {
+          console.error('Error loading events', err);
+        }
+      });
+  }
+
 
 
 
   loadEvents(): void {
     this.registrationService.getRegistrationbyUserID(this.auth.getUserId()).subscribe({
       next: (registrations) => {
-        this.registration = registrations
+        this.registration = registrations;
       },
       error: (err) => {
         console.error('Error loading events', err);
@@ -78,20 +98,53 @@ export class UserPageComponent {
   }
 
 
-
+// deletes methods 
 
   Unregister(id_registration: String) {
     this.registrationService.delete(id_registration).subscribe({
       next: (user) => {
         this.loadEvents()
+        this.toast.showSuccess("Registration deleted")
       },
       error: (err) => {
-        console.error('Error loading user', err);
+        this.toast.showError("Impossible")
+        console.error('Error deleting registration', err);
         this.router.navigate(['/']); // Navigate to home or an error page
       }
     });;
   }
 
+  
+  DeleteFeedback(id_feedback: String){
+    this.feedbackservice.delete(id_feedback).subscribe({
+      next: (user) => {
+        this.loadFeedback();
+        this.toast.showSuccess("Feedback deleted")
+      },
+      error: (err) => {
+        this.toast.showError("Impossible")
+        console.error('Error deleting feedback', err);
+        this.router.navigate(['/']); // Navigate to home or an error page
+      }
+    });;
+  }
+
+  DeleteEvent(id_event : String){
+    this.EventService.delete(id_event).subscribe({
+      next: (user) => {
+        this.loadMyEvents();
+        this.toast.showSuccess("Event deleted")
+      },
+      error: (err) => {
+        this.toast.showError("Impossible")
+        console.error('Error deleting feedback', err);
+        this.router.navigate(['/']); // Navigate to home or an error page
+      }
+    });;
+  }
+
+
+  // méthodes annexes
 
   isEventActive(eventEndDate: Date): boolean {
     return new Date(eventEndDate) > this.date_now;
@@ -109,6 +162,8 @@ export class UserPageComponent {
       console.log(result);
     });
   }
+
+  
 
 
 

@@ -27,6 +27,7 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { AddFeedbackComponent } from './Add_component/add-feedback/add-feedback.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     FeedBackItemComponent,
     AddEventComponent,
     UserPageComponent,
-    AddFeedbackComponent
+    AddFeedbackComponent,
+
   ],
   imports: [
     BrowserModule,

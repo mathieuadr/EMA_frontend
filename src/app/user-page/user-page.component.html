@@ -14,7 +14,7 @@
 
     <div class="container">
       <mat-tab-group>
-        <mat-tab label="Future Events">
+        <mat-tab label="Registrations">
           <div class="container">
             <h2>Events</h2>
             <table class="table table-striped">
@@ -38,24 +38,25 @@
           </div>
         </mat-tab>
 
-        <mat-tab label="Past Events">
+        <mat-tab label="My Feedbacks">
           <div class="container">
             <h2>My Feedbacks</h2>
             <table class="table table-striped">
               <thead class="thead-dark">
                 <tr>
-                  <th>Title</th>
-                  <th>Date beginning</th>
-                  <th>Creator</th>
+                  <th>Event</th>
+                  <th>Rating</th>
+                  <th>Description</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let reg of registration">
-                  <td>{{ reg.event.title }}</td>
-                  <td>{{ reg.event.dateBegining | date: 'short' }}</td>
-                  <td>{{ reg.event.idCreator.name + ' ' + reg.event.idCreator.surname }}</td>
-                  <td><button type="button" class="btn btn-outline-success">Give feedback</button></td>
+                <tr *ngFor="let feedback of user_feedback">
+                  <td>{{ feedback.registration.event.title }}</td>
+                  <td>{{ feedback.rating}}</td>
+                  <td>{{ feedback.description}}</td>
+                  <td><button type="button" class="btn btn btn-outline-danger" (click)="DeleteFeedback(feedback.id_feedback)">Unregister</button>
+                  </td>
                   
                 </tr>
               </tbody>
@@ -76,10 +77,10 @@
               </thead>
               <tbody>
                 <tr *ngFor="let event of User_events">
-                  <td>{{ event.dateBegining | date: 'short' }}</td>
                   <td>{{ event.title }}</td>
+                  <td>{{ event.dateBegining | date: 'short' }}</td>
                   <td>{{ event.idCreator.name + ' ' + event.idCreator.surname }}</td>
-                  <td><button *ngIf="isEventActive(event.date_end)" type="button" class="btn btn btn-outline-danger">Delete your event</button></td>
+                  <td><button *ngIf="isEventActive(event.date_end)" type="button" class="btn btn btn-outline-danger" (click)="DeleteEvent(event.idEvent)">Delete your event</button></td>
                 </tr>
               </tbody>
             </table>
