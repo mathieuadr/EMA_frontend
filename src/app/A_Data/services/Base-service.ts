@@ -101,8 +101,9 @@ export default abstract class BaseService<ENTITY, ENTITY_CREATE_INPUT> {
         if (response.status === 200) {
           
           return response.body as unknown as ENTITY; // Extraction du corps de la réponse si le statut est 200
-        } else {
-          throw new Error('Authentication failed');
+        }
+        else {
+          throw new Error('An error occurred. Please try again later.');
         }
       })
     )

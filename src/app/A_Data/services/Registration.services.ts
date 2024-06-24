@@ -49,12 +49,19 @@ export class RegistrationService extends BaseService<Registration,RegistrationCr
         map(response => {
           if (response.status === 200) {
             return response.body as unknown as String; // Extraction du corps de la réponse si le statut est 200
+          } 
+          else if (response.status===409) {
+            throw new Error('Users Already registered');
           } else {
             throw new Error('Impossible to register');
           }
         }),
         catchError(error => {
-          return throwError(() => new Error(error.message || 'An error occurred'));
+          if (error.status === 409) {
+            return throwError(() => new Error('User already registered'));
+          } else {
+            return throwError(() => new Error(error.message || 'An error occurred'));
+          }
         })
         
       );

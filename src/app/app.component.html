@@ -1,7 +1,7 @@
 <!-- app.component.html -->
 <div class="d-flex flex-column vh-100">
-  <app-top-bar></app-top-bar>
+  <app-top-bar *ngIf="showTopBar"></app-top-bar>
 
 
-        <router-outlet></router-outlet>
+        <router-outlet ></router-outlet>
 </div>
