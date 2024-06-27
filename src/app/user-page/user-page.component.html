@@ -53,7 +53,10 @@
               <tbody>
                 <tr *ngFor="let feedback of user_feedback">
                   <td>{{ feedback.registration.event.title }}</td>
-                  <td>{{ feedback.rating}}</td>
+                  <td>                    
+                    <ng-container *ngFor="let _ of [].constructor(feedback.rating); let i = index">
+                    <i class="bi bi-star"></i>
+                  </ng-container></td>
                   <td>{{ feedback.description}}</td>
                   <td><button type="button" class="btn btn btn-outline-danger" (click)="DeleteFeedback(feedback.id_feedback)">Unregister</button>
                   </td>
@@ -72,14 +75,14 @@
                 <tr>
                   <th>Title</th>
                   <th>Date beginning</th>
-                  <th>Creator</th>
+                  <th>Location</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let event of User_events">
                   <td>{{ event.title }}</td>
-                  <td>{{ event.dateBegining | date: 'short' }}</td>
-                  <td>{{ event.idCreator.name + ' ' + event.idCreator.surname }}</td>
+                  <td>{{ (event.dateBegining | date: 'short')+" to "+(event.date_end | date:'short')}}</td>
+                  <td>{{ event.location }}</td>
                   <td><button *ngIf="isEventActive(event.date_end)" type="button" class="btn btn btn-outline-danger" (click)="DeleteEvent(event.idEvent)">Delete your event</button></td>
                 </tr>
               </tbody>

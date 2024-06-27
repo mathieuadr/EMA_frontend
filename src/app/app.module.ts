@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { UserService } from './A_Data/services/User.services';
 import { HttpClientModule } from '@angular/common/http';
 import { EventListComponent } from './event-list/event-list.component';
-import { EventItemComponent } from './event-item/event-item.component';
+import { EventItemComponent } from './event-list/event-item/event-item.component';
 import { EventService } from './A_Data/services/Event.services';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';

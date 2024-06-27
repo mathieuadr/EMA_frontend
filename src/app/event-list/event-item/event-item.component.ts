@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { Event_Proj } from '../A_Data/Event_proj';
-import { User } from '../A_Data/User';
-import { AuthService } from '../A_Data/services/auth.service';
-import { EventService } from '../A_Data/services/Event.services';
-import { RegistrationService } from '../A_Data/services/Registration.services';
+import { Event_Proj } from '../../A_Data/Event_proj';
+import { User } from '../../A_Data/User';
+import { AuthService } from '../../A_Data/services/auth.service';
+import { EventService } from '../../A_Data/services/Event.services';
+import { RegistrationService } from '../../A_Data/services/Registration.services';
 import Swal from 'sweetalert2';
+
 
 
 @Component({
