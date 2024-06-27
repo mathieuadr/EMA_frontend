@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { EventService } from '../A_Data/services/Event.services';
 import { Event_Proj } from '../A_Data/Event_proj';
 import {  Router } from '@angular/router';
+import { User } from '../A_Data/User';
+import { UserService } from '../A_Data/services/User.services';
+import { FeedbackService } from '../A_Data/services/FeedBack.service';
+import { Feedback } from '../A_Data/Feedback';
 
 
 @Component({
@@ -14,13 +18,16 @@ export class EventListComponent {
   filterDate: string | undefined;
   filterLocation: string | undefined;
   filterIdCreator: string | undefined;
+  Users :User[] =[];
   
-  constructor(private eventService : EventService, private router : Router){
+  
+  constructor(private eventService : EventService, private router : Router, private userservice :UserService){
   }
 
 
   ngOnInit(): void {
     this.loadEvent();
+    this.loadUsers();
   }
 
   loadEvent(): void{
@@ -29,21 +36,17 @@ export class EventListComponent {
     });
   }
 
-  searchEvents(): void {
-    if (this.filterDate) {
-      this.filterDate = this.formatDate(new Date(this.filterDate));
-    }
+  searchEvents(): void {  
     this.eventService.getByFilter(this.filterDate, this.filterLocation, this.filterIdCreator).subscribe(events => {
       this.events = events;
     });
   }
 
-   formatDate(date: Date): string {
-    const year = date.getFullYear();
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const day = ('0' + date.getDate()).slice(-2);
-    
-    return `${year}-${month}-${day}`;
+  loadUsers(): void {
+    this.userservice.getAll().subscribe(users => {
+      this.Users = users;
+    });
   }
   
+
 }

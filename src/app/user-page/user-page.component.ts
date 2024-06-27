@@ -23,7 +23,6 @@ import { ToastService } from '../A_Data/services/A_Outil/Toast';
 export class UserPageComponent {
   [x: string]: any;
   user_actual!: User;
-  date_now: Date;
   registration: Registration[] = [];
   User_events: Event_Proj[] = [];
   user_feedback : Feedback[]=[];
@@ -32,14 +31,13 @@ export class UserPageComponent {
     private registrationService: RegistrationService,private toast: ToastService,
     private EventService: EventService, private dialog: MatDialog, private feedbackservice : FeedbackService
   ) {
-    this.date_now = new Date(Date.now());
+    
   }
   ngOnInit(): void {
     this.loadUser();
     this.loadEvents();
     this.loadMyEvents();
     this.loadFeedback();
-    this.date_now = new Date(Date.now());
   }
 
 
@@ -147,7 +145,7 @@ export class UserPageComponent {
   // méthodes annexes
 
   isEventActive(eventEndDate: Date): boolean {
-    return new Date(eventEndDate) > this.date_now;
+    return new Date(eventEndDate) > new Date(Date.now());
   }
 
   openFeedbackDialog(registrationID: string) {

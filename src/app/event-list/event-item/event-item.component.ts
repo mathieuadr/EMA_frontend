@@ -5,6 +5,9 @@ import { AuthService } from '../../A_Data/services/auth.service';
 import { EventService } from '../../A_Data/services/Event.services';
 import { RegistrationService } from '../../A_Data/services/Registration.services';
 import Swal from 'sweetalert2';
+import { Feedback } from '../../A_Data/Feedback';
+import { FeedbackService } from '../../A_Data/services/FeedBack.service';
+import { ToastService } from '../../A_Data/services/A_Outil/Toast';
 
 
 
@@ -16,12 +19,14 @@ import Swal from 'sweetalert2';
 export class EventItemComponent {
   @Input()
   Event!:Event_Proj;
-
+  Feedbacks : Feedback[]=[];
 
 
   constructor(
+    private feedbackservice :FeedbackService,
     private authService: AuthService,
-    private registrationService : RegistrationService
+    private registrationService : RegistrationService,
+    private toast : ToastService
   ){}
 
   Toast = Swal.mixin({
@@ -51,5 +56,19 @@ export class EventItemComponent {
         text: error.message || 'An error occurred'
       })
     });
+  }
+
+  loadFeedback(id_event :String ){
+    this.feedbackservice.getFeedbackbyEvent(id_event).subscribe(
+      (feedbacks: Feedback[]) => {
+        this.Feedbacks = feedbacks;
+      },
+      (error: any) => {
+        this.toast.showError("Error loading feedback")
+      }
+    );
+  }
+    isEventActive(eventEndDate: Date): boolean {
+    return new Date(eventEndDate) > new Date(Date.now());
   }
 }

@@ -31,8 +31,9 @@ export class EventService extends BaseService<Event_Proj,EventCreateInput>{
 
   getByFilter(date?: string, location?: string, idCreator?: string): Observable<Event_Proj[]> {
     let params = new HttpParams();
+    
     if (date) {
-      params = params.set('date', '2024-09-15');
+      params = params.set('startDate  ', date);
     }
     if (location) {
       params = params.set('location', location);

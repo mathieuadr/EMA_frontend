@@ -1,34 +1,38 @@
-<!-- src/app/event-list/event-list.component.html -->
 <div class="container bootstrap snippets bootdey pr-2">
-  <hr>
-  <ol class="breadcrumb">
-      <li class="pull-right"><a href="" class="text-muted">
-          <i class="fa fa-refresh"></i></a>
-      </li>
-  </ol>
-
-  <div class="row mb-4">
+    <hr>
+    <ol class="breadcrumb">
+      <li class="pull-right"><a href="" class="text-muted"><i class="fa fa-refresh"></i></a></li>
+    </ol>
+  
+    <div class="row mb-4">
       <div class="col-md-3">
+        -- Date -- 
         <input type="date" [(ngModel)]="filterDate" class="form-control" placeholder="Date">
       </div>
       <div class="col-md-3">
-          <input type="text" [(ngModel)]="filterLocation" class="form-control" placeholder="Location">
+        -- Location -- 
+        <input type="text" [(ngModel)]="filterLocation" class="form-control" >
       </div>
       <div class="col-md-3">
-          <input type="text" [(ngModel)]="filterIdCreator" class="form-control" placeholder="Creator ID">
+        --Select user--
+        <select [(ngModel)]="filterIdCreator" class="form-select">
+            <option [ngValue]="null" disabled selected>Select User</option>
+            <option *ngFor="let user of Users" [value]="user.id">{{ user.name }} {{ user.surname }}</option>
+          </select>
       </div>
       <div class="col-md-3">
-          <button (click)="searchEvents()" class="btn btn-primary">Search</button>
+        <button (click)="searchEvents()" class="btn btn-primary">Search</button>
       </div>
-  </div>
-
-  <div class="row">
+    </div>
+  
+    <div class="row">
       <div *ngFor="let event of events">
-          <app-event-item [Event]="event"></app-event-item>
+        <app-event-item [Event]="event"></app-event-item>
       </div>
-  </div>
-
-  <div *ngIf="!events || events.length === 0" class="alert alert-info mt-4">
+    </div>
+  
+    <div *ngIf="!events || events.length === 0" class="alert alert-info mt-4">
       <p class="mb-0">No Event available.</p>
+    </div>
   </div>
-</div>
+  

@@ -29,7 +29,18 @@ import BaseService from "./Base-service";
         })
       );
     }  
-  
+    
+    getFeedbackbyEvent(Event_id : String){
+      if(Event_id==null){
+        return throwError(() => new Error('Unknwon Event'));
+      }
+      return this.http.get<Feedback[]>(`${this.PostUrl}/getbyeventid/${Event_id}`).pipe(
+        catchError(error => {
+          console.error('Error fetching feedbacks', error);
+          return throwError(() => new Error('Error fetching feedbacks'));
+        })
+      );
+  }
   
     
   }
