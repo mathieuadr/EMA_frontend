@@ -28,12 +28,11 @@ export class EventService extends BaseService<Event_Proj,EventCreateInput>{
       })
     );
   }  
-
   getByFilter(date?: string, location?: string, idCreator?: string): Observable<Event_Proj[]> {
     let params = new HttpParams();
     
     if (date) {
-      params = params.set('startDate  ', date);
+      params = params.set('startDate', date);
     }
     if (location) {
       params = params.set('location', location);
@@ -41,6 +40,9 @@ export class EventService extends BaseService<Event_Proj,EventCreateInput>{
     if (idCreator) {
       params = params.set('idCreator', idCreator);
     }
+
+    console.log('Params:', params.toString());  // Ajout de log pour vérifier les paramètres
+
     return this.http.get<Event_Proj[]>(`${this.PostUrl}/getByFilter`, { params });
   }
 

@@ -8,7 +8,7 @@ import { RegistrationService } from '../A_Data/services/Registration.services';
 import { EventService } from '../A_Data/services/Event.services';
 import { Event_Proj } from '../A_Data/Event_proj';
 import { Registration } from '../A_Data/Registration';
-import { parse, isAfter } from 'date-fns';
+import { parse, isAfter, parseISO } from 'date-fns';
 import { AddFeedbackComponent } from '../Add_component/add-feedback/add-feedback.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Feedback } from '../A_Data/Feedback';
@@ -79,6 +79,7 @@ export class UserPageComponent {
     this.registrationService.getRegistrationbyUserID(this.auth.getUserId()).subscribe({
       next: (registrations) => {
         this.registration = registrations;
+        this.sortRegistrationsByEventDate();
       },
       error: (err) => {
         console.error('Error loading events', err);
@@ -156,13 +157,20 @@ export class UserPageComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
+      this.loadFeedback();
       console.log('The dialog was closed');
       console.log(result);
     });
   }
 
   
-
+  sortRegistrationsByEventDate(): void {
+    this.registration.sort((a, b) => {
+      const dateA = parseISO(a.event.dateBegining.toString()); // Convertir en chaîne si nécessaire
+      const dateB = parseISO(b.event.dateBegining.toString());
+      return dateB.getTime()- dateA.getTime() ;
+    });
+  }
 
 
 }

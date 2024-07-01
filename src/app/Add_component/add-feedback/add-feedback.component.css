@@ -1,0 +1,13 @@
+.rating i {
+    font-size: 2rem;
+    cursor: pointer;
+    color: lightgray;
+  }
+  
+  .rating i.text-warning {
+    color: gold;
+  }
+  
+  .invalid-feedback {
+    color: red;
+  }

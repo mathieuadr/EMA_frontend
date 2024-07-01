@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { HistoricalComponent } from './historical/historical.component';
+
 import { RouterModule } from '@angular/router';
 import { UserService } from './A_Data/services/User.services';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,7 +33,6 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     TopBarComponent,
     LoginPageComponent,
-    HistoricalComponent,
     EventListComponent,
     EventItemComponent,
     SignInComponent,

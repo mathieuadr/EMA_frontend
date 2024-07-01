@@ -1,38 +1,47 @@
 <div class="container bootstrap snippets bootdey pr-2">
-    <hr>
-    <ol class="breadcrumb">
-      <li class="pull-right"><a href="" class="text-muted"><i class="fa fa-refresh"></i></a></li>
-    </ol>
-  
-    <div class="row mb-4">
-      <div class="col-md-3">
-        -- Date -- 
-        <input type="date" [(ngModel)]="filterDate" class="form-control" placeholder="Date">
-      </div>
-      <div class="col-md-3">
-        -- Location -- 
-        <input type="text" [(ngModel)]="filterLocation" class="form-control" >
-      </div>
-      <div class="col-md-3">
-        --Select user--
-        <select [(ngModel)]="filterIdCreator" class="form-select">
-            <option [ngValue]="null" disabled selected>Select User</option>
-            <option *ngFor="let user of Users" [value]="user.id">{{ user.name }} {{ user.surname }}</option>
-          </select>
-      </div>
-      <div class="col-md-3">
-        <button (click)="searchEvents()" class="btn btn-primary">Search</button>
-      </div>
+  <hr>
+  <ol class="breadcrumb">
+    <li class="pull-right"><a href="" class="text-muted"><i class="fa fa-refresh"></i></a></li>
+  </ol>
+
+  <div class="row mb-4">
+    <div class="col-md-3 mb-3">
+      <label for="date">Date</label>
+      <input id="date" type="date" [(ngModel)]="filterDate" class="form-control" placeholder="Date">
     </div>
-  
-    <div class="row">
-      <div *ngFor="let event of events">
-        <app-event-item [Event]="event"></app-event-item>
-      </div>
+    <div class="col-md-3 mb-3">
+      <label for="location">Location</label>
+      <input id="location" type="text" [(ngModel)]="filterLocation" class="form-control">
     </div>
-  
-    <div *ngIf="!events || events.length === 0" class="alert alert-info mt-4">
-      <p class="mb-0">No Event available.</p>
+    <div class="col-md-3 mb-3">
+      <label for="user">Select User</label>
+      <select id="user" [(ngModel)]="filterIdCreator" class="form-select">
+        <option [ngValue]="null" disabled selected>Select User</option>
+        <option *ngFor="let user of Users" [value]="user.id">{{ user.name }} {{ user.surname }}</option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3 d-flex align-items-end">
+      <button (click)="searchEvents()" class="btn btn-success w-100 me-2">Search</button>
+      <button (click)="resetFilters()" class="btn btn-secondary ">
+        <i class="bi bi-arrow-counterclockwise"></i>
+      </button>
     </div>
   </div>
   
+
+  <div class="row mb-4">
+    <div class="col-md-3 mb-3">
+      <button (click)="toggleSortOrder()" class="btn btn-outline-dark"><i class="bi bi-sort-up"></i>Sort by Date {{ sortOrder === 'asc' ? 'Asc' : 'Desc' }}</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mb-3" *ngFor="let event of events">
+      <app-event-item [Event]="event"></app-event-item>
+    </div>
+  </div>
+
+  <div *ngIf="!events || events.length === 0" class="alert alert-info mt-4">
+    <p class="mb-0">No Event available.</p>
+  </div>
+</div>

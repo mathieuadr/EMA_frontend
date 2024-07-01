@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Event_Proj } from '../../A_Data/Event_proj';
 import { User } from '../../A_Data/User';
 import { AuthService } from '../../A_Data/services/auth.service';
@@ -9,25 +9,22 @@ import { Feedback } from '../../A_Data/Feedback';
 import { FeedbackService } from '../../A_Data/services/FeedBack.service';
 import { ToastService } from '../../A_Data/services/A_Outil/Toast';
 
-
-
 @Component({
   selector: 'app-event-item',
   templateUrl: './event-item.component.html',
-  styleUrl: './event-item.component.css'
+  styleUrls: ['./event-item.component.css']
 })
-export class EventItemComponent {
-  @Input()
-  Event!:Event_Proj;
-  Feedbacks : Feedback[]=[];
-
+export class EventItemComponent implements OnInit {
+  @Input() Event!: Event_Proj;
+  Feedbacks: Feedback[] = [];
+  dropdownOpen: boolean = false;
 
   constructor(
-    private feedbackservice :FeedbackService,
+    private feedbackService: FeedbackService,
     private authService: AuthService,
-    private registrationService : RegistrationService,
-    private toast : ToastService
-  ){}
+    private registrationService: RegistrationService,
+    private toast: ToastService
+  ) {}
 
   Toast = Swal.mixin({
     toast: true,
@@ -41,34 +38,45 @@ export class EventItemComponent {
     }
   });
 
+  ngOnInit(): void {
+    if (!this.isEventActive(this.Event.date_end)) {
+      this.loadFeedback(this.Event.idEvent);
+    }
+  }
+
   register(): void {
     const userId = this.authService.getUserId(); // Méthode pour obtenir l'ID utilisateur à partir de AuthService
     this.registrationService.registerUserToEvent(userId, this.Event.idEvent).subscribe(
-    (response: any) => {
-          this.Toast.fire({
-            icon: 'success',
-            title: 'Registration confirmed',
-          });
-    }, (error: any) => {
-      this.Toast.fire({
-        icon: 'error',
-        title: 'Erreur!',
-        text: error.message || 'An error occurred'
-      })
-    });
+      (response: any) => {
+        this.Toast.fire({
+          icon: 'success',
+          title: 'Registration confirmed',
+        });
+      }, (error: any) => {
+        this.Toast.fire({
+          icon: 'error',
+          title: 'Erreur!',
+          text: error.message || 'An error occurred'
+        })
+      });
   }
 
-  loadFeedback(id_event :String ){
-    this.feedbackservice.getFeedbackbyEvent(id_event).subscribe(
+  loadFeedback(id_event: String): void {
+    this.feedbackService.getFeedbackbyEvent(id_event).subscribe(
       (feedbacks: Feedback[]) => {
         this.Feedbacks = feedbacks;
       },
       (error: any) => {
-        this.toast.showError("Error loading feedback")
+        this.toast.showError("Error loading feedback");
       }
     );
   }
-    isEventActive(eventEndDate: Date): boolean {
+
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  isEventActive(eventEndDate: Date): boolean {
     return new Date(eventEndDate) > new Date(Date.now());
   }
 }
