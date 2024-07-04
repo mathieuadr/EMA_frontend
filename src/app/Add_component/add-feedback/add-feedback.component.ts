@@ -44,7 +44,6 @@ export class AddFeedbackComponent {
           this.toastService.showSuccess('Feedback created successfully');
           this.form.reset();
           this.dialogRef.close(); // Close the dialog on success
-          this.router.navigate(['/feedback']);
         },
         (error: any) => {
           this.toastService.showError(error.message || 'An error occurred');
